@@ -72,6 +72,7 @@ public class LoginAuthenticationImpl implements LoginAthenticationService {
         try {
             var newPassword = RandomUtil.generateRandomString(6);
             helper.setTo(email);
+	    helper.setFrom("TEDDY-STORE");
             helper.setSubject("RESET PASSWORD TEDDY-STORE");
             helper.setText("Mật khẩu mới của bạn là: " + newPassword, true);
             mailSender.send(mimeMessage);
