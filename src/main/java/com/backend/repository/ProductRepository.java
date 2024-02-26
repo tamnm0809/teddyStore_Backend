@@ -23,7 +23,7 @@ public interface ProductRepository extends JpaRepository<Product, String> {
 			+ "JOIN Product p ON p.id = dp.id_pro "
 			+ "JOIN Product_Image pi ON pi.id_pro = p.id "
 			+ "JOIN Category c ON c.id = p.id_cate "
-			+ "WHERE c.name = N'Thú bông' GROUP BY p.id, p.name", nativeQuery = true)
+			+ "WHERE c.name = N'Th� b�ng' GROUP BY p.id, p.name", nativeQuery = true)
 	List<Object[]> findAllWhereThuBong();
 	
 	@Query(value = "SELECT p.id, p.name, MIN(pi.img_url) FROM Size s "
@@ -31,6 +31,6 @@ public interface ProductRepository extends JpaRepository<Product, String> {
 			+ "JOIN Product p ON p.id = dp.id_pro "
 			+ "JOIN Product_Image pi ON pi.id_pro = p.id "
 			+ "JOIN Category c ON c.id = p.id_cate "
-			+ "WHERE c.name = N'Gấu bông hoạt hình' GROUP BY p.id, p.name", nativeQuery = true)
+			+ "WHERE c.name = N'G?u b�ng ho?t h?nh' GROUP BY p.id, p.name", nativeQuery = true)
 	List<Object[]> findAllWhereGauHoatHinh();
 }

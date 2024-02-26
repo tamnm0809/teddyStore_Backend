@@ -23,7 +23,6 @@ public class ProductController {
 	public List<ProductDTO> getAllProduct(){
 		return proService.getAllProductDTO();
 	}
-	
 	@GetMapping("/getAllProductWhere-Thu-Bong")
 	public List<ProductDTO> getProductWhereThuBong(){
 		return proService.getAllProductWhereThuBong();
