@@ -31,8 +31,8 @@ public class LoginAuthenticationController {
 
 
 	@PostMapping("reset-password/{email}")
-	public void resetPassword(@PathVariable("email") String email) {
-		loginService.resetPassword(email);
+	public Object resetPassword(@PathVariable("email") String email) {
+		return loginService.resetPassword(email);
 	}
 
 	@PostMapping("/register")
