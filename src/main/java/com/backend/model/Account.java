@@ -51,8 +51,5 @@ public class Account implements Serializable {
 	private Set<Order> order;
 
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
-	private Set<Transactions> transactions;
-
-	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
 	private Set<Rate> rate;
 }

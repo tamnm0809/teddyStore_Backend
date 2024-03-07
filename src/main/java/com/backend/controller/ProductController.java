@@ -19,8 +19,23 @@ public class ProductController {
 	@Autowired
 	private ProductService proService;
 	
+	@GetMapping("/")
+	public String a() {
+		return "";
+	}
+	
 	@GetMapping("/getAllProduct")
 	public List<ProductDTO> getAllProduct(){
 		return proService.getAllProductDTO();
+	}
+	
+	@GetMapping("/getAllProductWhere-Thu-Bong")
+	public List<ProductDTO> getProductWhereThuBong(){
+		return proService.getAllProductWhereThuBong();
+	}
+	
+	@GetMapping("/getAllProductWhere-Gau-Bong-Hoat-Hinh")
+	public List<ProductDTO> getProductWhereGauHoatHinh(){
+		return proService.getAllProductWhereGauHoatHinh();
 	}
 }

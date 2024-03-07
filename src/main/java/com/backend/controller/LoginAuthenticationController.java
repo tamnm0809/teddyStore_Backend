@@ -3,6 +3,9 @@ package com.backend.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +17,7 @@ import com.backend.services.LoginAthenticationService;
 
 @RestController
 @RequestMapping("/teddy-store")
+@CrossOrigin("http://localhost:3000/")
 public class LoginAuthenticationController {
 
 	@Autowired
@@ -25,23 +29,22 @@ public class LoginAuthenticationController {
 	}
 
 	@PostMapping("/login")
-	public Boolean login(@RequestBody Account acc) {
-		String username = acc.getUsername();
-		String password = acc.getPassword();
+	public ResponseEntity<Account> login(@RequestBody Account acc) {
+	    String username = acc.getUsername();
+	    String password = acc.getPassword();
 
-		if (loginService.authenticateAcc(username, password)) {
-			/*
-			 * Login Succesfully
-			 */
-			return true;
-		} else {
-			/*
-			 * Login Failed
-			 */
-			return false;
-		}
+	    if (loginService.authenticateAcc(username, password)) {
+	        // Đăng nhập thành công, trả về đối tượng Account hoặc một đối tượng khác nếu cần
+	        Account authenticatedAcc = loginService.getInforByUsername(username); // Thay thế bằng phương thức thích hợp
+	        return new ResponseEntity<>(authenticatedAcc, HttpStatus.OK);
+	    } else {
+	        /*
+	         * Đăng nhập thất bại
+	         */
+	        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+	    }
 	}
-	
+
 	@PostMapping("/logout")
 	public Boolean logout() {
 		new Account();

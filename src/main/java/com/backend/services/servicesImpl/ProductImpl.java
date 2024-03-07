@@ -21,10 +21,6 @@ public class ProductImpl implements ProductService {
 	public List<Product> getAllProduct() {
 		return proRepository.findAll();
 	}
-//	@Override
-//    public List<Object[]> getAllProductsObject() {
-//        return proRepository.findAllProductsWithCategory();
-//    }
 
 	private List<ProductDTO> convertToObjectDTO(List<Object[]> results) {
 		List<ProductDTO> productDetailsDTOList = new ArrayList<>();
@@ -33,9 +29,7 @@ public class ProductImpl implements ProductService {
 			ProductDTO productDetailsDTO = new ProductDTO();
 			productDetailsDTO.setId((String) result[0]);
 			productDetailsDTO.setName((String) result[1]);
-			productDetailsDTO.setPrice((double) result[2]);
-			productDetailsDTO.setImg_url((String) result[3]);
-//            productDetailsDTO.setSize((String) result[4]);
+			productDetailsDTO.setImg_url((String) result[2]);
 
 			productDetailsDTOList.add(productDetailsDTO);
 		}
@@ -45,6 +39,16 @@ public class ProductImpl implements ProductService {
 
 	public List<ProductDTO> getAllProductDTO() {
 		List<Object[]> results = proRepository.findAllProducts();
+		return convertToObjectDTO(results);
+	}
+	
+	public List<ProductDTO> getAllProductWhereThuBong() {
+		List<Object[]> results = proRepository.findAllWhereThuBong();
+		return convertToObjectDTO(results);
+	}
+
+	public List<ProductDTO> getAllProductWhereGauHoatHinh() {
+		List<Object[]> results = proRepository.findAllWhereGauHoatHinh();
 		return convertToObjectDTO(results);
 	}
 

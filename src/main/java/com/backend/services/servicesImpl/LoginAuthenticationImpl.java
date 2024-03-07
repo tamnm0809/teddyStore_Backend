@@ -26,5 +26,10 @@ public class LoginAuthenticationImpl implements LoginAthenticationService {
 		Account acc = loginRepository.findByUsername(username);
 		return acc != null && acc.getPassword().equals(password);
 	}
+	
+	@Override
+	public Account getInforByUsername(String username) {
+		return loginRepository.findByUsername(username);
+	}
 
 }

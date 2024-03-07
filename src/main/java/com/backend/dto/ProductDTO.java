@@ -10,8 +10,6 @@ public class ProductDTO {
 	@Id
 	private String id;
 	private String name;
-	private double price;
 	private String img_url;
-//	private String size;
 }
   

@@ -25,21 +25,35 @@ public class Transactions implements Serializable{
 	@Id
 	private String id;
 	
-	@Column(name="status")
-	private String status;
+	@Column(name="vnp_amount")
+	private String vnp_amount;
 	
-	@Column(name="method_payment")
-	private String method_payment;
-	
-	@Column(name="timestamp")
-	private String timestamp;
+	@Column(name="vnp_bankTranNo")
+	private String vnp_bankTranNo;
 
-	@Column(name="amount")
-	private String amount;
+	@Column(name="vnp_cardType")
+	private String vnp_cardType;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_acc")
-	private Account account;
+	@Column(name="vnp_orderInfor")
+	private String vnp_orderInfor;
+
+	@Column(name="vnp_payDate")
+	private String vnp_payDate;
+
+	@Column(name="vnp_responseCode")
+	private String vnp_responseCode;
+
+	@Column(name="vpn_tmnCode")
+	private String vnp_tmnCode;
+
+	@Column(name="vnp_transactionNo")
+	private String vnp_transactionNo;
+
+	@Column(name="vnp_transactionStatus")
+	private String vnp_transactionStatus;
+
+	@Column(name="vnp_txnRef")
+	private String vnp_txnRef;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_ord")

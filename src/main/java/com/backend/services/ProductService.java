@@ -9,7 +9,9 @@ public interface ProductService {
 
 	public List<Product> getAllProduct();
 	
-	List<ProductDTO> getAllProductDTO();
+	public List<ProductDTO> getAllProductDTO();
+
+	public List<ProductDTO> getAllProductWhereThuBong();
 	
-//	public List<Object[]> getAllProductsObject();
+	public List<ProductDTO> getAllProductWhereGauHoatHinh();
 }
