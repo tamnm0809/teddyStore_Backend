@@ -19,11 +19,6 @@ public class ProductController {
 	@Autowired
 	private ProductService proService;
 	
-	@GetMapping("/")
-	public String a() {
-		return "";
-	}
-	
 	@GetMapping("/getAllProduct")
 	public List<ProductDTO> getAllProduct(){
 		return proService.getAllProductDTO();

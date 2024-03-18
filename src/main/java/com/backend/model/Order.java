@@ -39,10 +39,6 @@ public class Order implements Serializable {
 	@JoinColumn(name = "id_acc")
 	private Account account;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_cart")
-	private Cart cart;
-
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
 	private Set<Transactions> transactions;
 

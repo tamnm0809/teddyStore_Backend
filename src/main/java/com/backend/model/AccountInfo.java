@@ -16,10 +16,10 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Table(name = "[Infor_account]")
+@Table(name = "[Info_account]")
 @AllArgsConstructor
 @NoArgsConstructor
-public class AccountInfor implements Serializable {
+public class AccountInfo implements Serializable {
 
 	private static final long serialVersionUID = -5994131652998960364L;
 
@@ -38,14 +38,11 @@ public class AccountInfor implements Serializable {
 	@Column(name = "birthday")
 	private Date birthday;
 
-	@Column(name = "address")
-	private String address;
-
 	@Column(name = "email")
 	private String email;
 
-	@Column(name = "phone_contact")
-	private Integer phone_contact;
+	@Column(name = "phone")
+	private Integer phone;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_acc")

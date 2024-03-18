@@ -11,4 +11,6 @@ public interface LoginAthenticationService {
 	boolean authenticateAcc(String username, String password);
 
 	Account getInforByUsername(String username);
+
+    public Account loginWithFacebook(Account acc);
 }

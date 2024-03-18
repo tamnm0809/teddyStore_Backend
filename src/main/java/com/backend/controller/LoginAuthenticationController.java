@@ -30,25 +30,31 @@ public class LoginAuthenticationController {
 
 	@PostMapping("/login")
 	public ResponseEntity<Account> login(@RequestBody Account acc) {
-	    String username = acc.getUsername();
-	    String password = acc.getPassword();
+		String username = acc.getUsername();
+		String password = acc.getPassword();
 
-	    if (loginService.authenticateAcc(username, password)) {
-	        // Đăng nhập thành công, trả về đối tượng Account hoặc một đối tượng khác nếu cần
-	        Account authenticatedAcc = loginService.getInforByUsername(username); // Thay thế bằng phương thức thích hợp
-	        return new ResponseEntity<>(authenticatedAcc, HttpStatus.OK);
-	    } else {
-	        /*
-	         * Đăng nhập thất bại
-	         */
-	        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-	    }
+		if (loginService.authenticateAcc(username, password)) {
+			Account authenticatedAcc = loginService.getInforByUsername(username);
+			return new ResponseEntity<>(authenticatedAcc, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
+	}
+
+	@PostMapping("/login-facebook")
+	public ResponseEntity<Account> LoginWithFacebook(@RequestBody Account acc, String username, String pasword) {
+		if (loginService.authenticateAcc(username, pasword)) {
+			Account authenticatedAcc = loginService.getInforByUsername(username);
+			return new ResponseEntity<>(authenticatedAcc, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
 	}
 
 	@PostMapping("/logout")
-	public Boolean logout() {
-		new Account();
-		return true;
+	public ResponseEntity<Account> logout() {
+		Account acc = new Account();
+		return ResponseEntity.ok(acc);
 	}
-	
+
 }

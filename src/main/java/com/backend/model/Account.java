@@ -42,7 +42,7 @@ public class Account implements Serializable {
 	private Boolean active;
 
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
-	private Set<AccountInfor> accountInfors;
+	private Set<AccountInfo> accountInfo;
 
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
 	private Set<Cart> cart;
@@ -52,4 +52,10 @@ public class Account implements Serializable {
 
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
 	private Set<Rate> rate;
+
+	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+	private Set<Delivery> delivery;
+
+	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+	private Set<Address> address;
 }

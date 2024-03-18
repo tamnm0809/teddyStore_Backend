@@ -25,11 +25,17 @@ public class DetailsOrder implements Serializable{
 	@Id
 	private String id;
 	
-	@Column(name="quantity")
-	private Integer quantity;
+	@Column(name="quantity_pro")
+	private Integer quantity_pro;
 	
 	@Column(name="price_unit")
 	private Double price_unit;
+
+	@Column(name="quantity_ser")
+	private Integer quantity_ser;
+
+	@Column(name="price_unit_ser")
+	private Double price_unit_ser;
 	
 	@Column(name="address")
 	private String address;
@@ -43,10 +49,6 @@ public class DetailsOrder implements Serializable{
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_dt_pro")
 	private DetailsProduct detailsProduct;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_ser")
-	private Service service;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_ord")

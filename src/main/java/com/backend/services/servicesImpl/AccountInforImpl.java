@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.backend.model.AccountInfor;
+import com.backend.model.AccountInfo;
 import com.backend.repository.AccountInforRepository;
 import com.backend.services.AccountInforService;
 
@@ -16,7 +16,7 @@ public class AccountInforImpl implements AccountInforService{
 	private AccountInforRepository accountInforRepository;
 
 	@Override
-	public List<AccountInfor> getAllAccountInfor() {
+	public List<AccountInfo> getAllAccountInfor() {
 		return accountInforRepository.findAll();
 	}
 

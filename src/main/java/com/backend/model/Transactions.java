@@ -1,6 +1,7 @@
 package com.backend.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,33 +27,33 @@ public class Transactions implements Serializable{
 	private String id;
 	
 	@Column(name="vnp_amount")
-	private String vnp_amount;
+	private double vnp_amount;
 	
-	@Column(name="vnp_bankTranNo")
+	@Column(name="vnp_bank_Tran_No")
 	private String vnp_bankTranNo;
 
-	@Column(name="vnp_cardType")
+	@Column(name="vnp_card_Type")
 	private String vnp_cardType;
 
-	@Column(name="vnp_orderInfor")
-	private String vnp_orderInfor;
+	@Column(name="vnp_order_Info")
+	private String vnp_orderInfo;
 
-	@Column(name="vnp_payDate")
-	private String vnp_payDate;
+	@Column(name="vnp_pay_Date")
+	private Date vnp_payDate;
 
-	@Column(name="vnp_responseCode")
+	@Column(name="vnp_response_Code")
 	private String vnp_responseCode;
 
-	@Column(name="vpn_tmnCode")
+	@Column(name="vnp_tmn_Code")
 	private String vnp_tmnCode;
 
-	@Column(name="vnp_transactionNo")
+	@Column(name="vnp_transaction_No")
 	private String vnp_transactionNo;
 
-	@Column(name="vnp_transactionStatus")
+	@Column(name="vnp_transaction_Status")
 	private String vnp_transactionStatus;
 
-	@Column(name="vnp_txnRef")
+	@Column(name="vnp_txn_Ref")
 	private String vnp_txnRef;
 	
 	@ManyToOne(fetch = FetchType.EAGER)

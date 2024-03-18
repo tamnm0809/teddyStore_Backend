@@ -32,4 +32,9 @@ public class LoginAuthenticationImpl implements LoginAthenticationService {
 		return loginRepository.findByUsername(username);
 	}
 
+	@Override
+	public Account loginWithFacebook(Account acc) {
+        return loginRepository.save(acc);
+	}
+
 }

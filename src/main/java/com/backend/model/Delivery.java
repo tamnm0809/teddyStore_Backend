@@ -37,4 +37,8 @@ public class Delivery implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_ord")
 	private Order order;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_acc")
+	private Account account;
 }
