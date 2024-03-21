@@ -31,6 +31,8 @@ public class SizeImpl implements SizeService {
 			DetailsDTO.setId((String) result[0]);
 			DetailsDTO.setSize_no((String) result[1]);
 			DetailsDTO.setPrice(((BigDecimal) result[2]).intValue());
+			DetailsDTO.setPrice_sale(((BigDecimal) result[3]).intValue());
+			DetailsDTO.setQuantity((Integer) result[4]);
 
 			sizeDetailsDTOList.add(DetailsDTO);
 		}

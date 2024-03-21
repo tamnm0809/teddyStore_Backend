@@ -30,5 +30,6 @@ public class Size implements Serializable {
 
 	@OneToMany(mappedBy = "size", cascade = CascadeType.ALL)
 	private Set<DetailsProduct> detailsProduct;
+	
 
 }
