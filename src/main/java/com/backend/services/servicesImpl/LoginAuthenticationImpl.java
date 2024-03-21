@@ -38,6 +38,15 @@ public class LoginAuthenticationImpl implements LoginAthenticationService {
                 .getPassword()
                 .equals(password);
     }
+	@Override
+	public Account getInforByUsername(String username) {
+		return loginRepository.findByUsername(username);
+	}
+
+    @Override
+    public Account loginWithFacebook(Account acc) {
+        return loginRepository.save(acc);
+    }
 
     @Override
     public boolean isExistId(String id) {

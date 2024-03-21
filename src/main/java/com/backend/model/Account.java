@@ -4,14 +4,16 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "[account]")
@@ -42,22 +44,20 @@ public class Account implements Serializable {
 	private Boolean active;
 
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
-	@JsonBackReference
-	private Set<AccountInfor> accountInfors;
+	private Set<AccountInfo> accountInfo;
 
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
-	@JsonBackReference
 	private Set<Cart> cart;
 
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
-	@JsonBackReference
 	private Set<Order> order;
 
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
-	@JsonBackReference
-	private Set<Transactions> transactions;
+	private Set<Rate> rate;
 
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
-	@JsonBackReference
-	private Set<Rate> rate;
+	private Set<Delivery> delivery;
+
+	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+	private Set<Address> address;
 }

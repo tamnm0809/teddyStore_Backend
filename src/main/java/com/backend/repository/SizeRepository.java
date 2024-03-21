@@ -18,4 +18,11 @@ public interface SizeRepository extends JpaRepository<Size, String>{
     Optional<Size> findLastSize();
     @Query("SELECT c FROM Size c WHERE LOWER(c.size_no) LIKE %:sizeNo%")
     Page<Size> findAllByName(String sizeNo, Pageable pageable);
+
+	@Query(value = "SELECT S.id,S.size_no,DP.price FROM SIZE S "
+	        + "JOIN DETAILS_PRODUCT DP ON DP.id_size=S.id "
+	        + "JOIN PRODUCT P ON P.id=DP.id_pro "
+	        + "WHERE P.ID = :productId "
+	        + "GROUP BY S.id,S.size_no,DP.price", nativeQuery = true)
+	public List<Object[]> findByIdWhere(@Param("productId") String productId);
 }

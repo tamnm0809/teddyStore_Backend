@@ -29,7 +29,7 @@ public class Size implements Serializable {
 	private String size_no;
 
 	@OneToMany(mappedBy = "size", cascade = CascadeType.ALL)
-	@JsonBackReference		// Ngăn chặn tình trạng vòng lặp đệ quy vô hạn
+	@JsonBackReference		// Ng�n ch?n t?nh tr?ng v?ng l?p �? quy v� h?n
 	private Set<DetailsProduct> detailsProduct;
 
 }

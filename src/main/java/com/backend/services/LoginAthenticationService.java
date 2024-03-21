@@ -13,4 +13,6 @@ public interface LoginAthenticationService {
 	boolean isExistUsername(String username);
 	boolean registerAccount(Account acc);
 	String resetPassword(String email);
+	Account getInforByUsername(String username);
+	Account loginWithFacebook(Account acc);
 }

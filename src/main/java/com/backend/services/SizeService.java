@@ -1,7 +1,7 @@
 package com.backend.services;
 
 import java.util.List;
-
+import com.backend.dto.SizeDTO;
 import com.backend.model.Size;
 
 public interface SizeService {
@@ -11,4 +11,5 @@ public interface SizeService {
 	Object searchSize(String sizeNo);
 
 	Object getAllSize();
+	List<SizeDTO> getSizeWhereId(String id);
 }

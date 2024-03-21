@@ -2,8 +2,8 @@ package com.backend.controller;
 
 import java.util.List;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,10 +13,11 @@ import com.backend.services.ProductImageService;
 
 @RestController
 @RequestMapping("/teddy-store")
-@RequiredArgsConstructor
+@CrossOrigin(value="http://localhost:3000/")
 public class ProductImageController {
 
-	private final ProductImageService productImageService;
+	@Autowired
+	private ProductImageService productImageService;
 
 	@GetMapping("/getAllImageProduct")
 	public List<ProductImage> getAllImagePro() {

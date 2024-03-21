@@ -27,10 +27,10 @@ public class CategoryImpl implements CategoryService {
 
     @Override
     public Object updateCategory(String id, String name, Boolean active) {
-        // Nếu id tồn tại thì update, không tồn tại thì tạo mới
+        // N?u id t?n t?i th? update, kh�ng t?n t?i th? t?o m?i
         var category = cateRepository.findById(id);
 
-        // kiểm tra xem category có tồn tại không
+        // ki?m tra xem category c� t?n t?i kh�ng
         if (category.isPresent()) {
             category
                     .get()
@@ -41,11 +41,11 @@ public class CategoryImpl implements CategoryService {
             cateRepository.save(category.get());
         } else {
 
-            // tạo mới category
+            // t?o m?i category
             var newCategory = new Category();
             var lastCategory = cateRepository.findLastCategory();
 
-            // lấy id của category cuối cùng và tạo id mới
+            // l?y id c?a category cu?i c�ng v� t?o id m?i
             if (lastCategory.isPresent()) {
                 newCategory.setId(RandomUtil.getNextId(lastCategory
                                                                .get()

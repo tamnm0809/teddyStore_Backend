@@ -1,6 +1,7 @@
 package com.backend.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,12 +10,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "[transactions]")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Transactions implements Serializable{
@@ -24,21 +26,35 @@ public class Transactions implements Serializable{
 	@Id
 	private String id;
 	
-	@Column(name="status")
-	private String status;
+	@Column(name="vnp_amount")
+	private double vnp_amount;
 	
-	@Column(name="method_payment")
-	private String method_payment;
-	
-	@Column(name="timestamp")
-	private String timestamp;
+	@Column(name="vnp_bank_Tran_No")
+	private String vnp_bankTranNo;
 
-	@Column(name="amount")
-	private String amount;
+	@Column(name="vnp_card_Type")
+	private String vnp_cardType;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_acc")
-	private Account account;
+	@Column(name="vnp_order_Info")
+	private String vnp_orderInfo;
+
+	@Column(name="vnp_pay_Date")
+	private Date vnp_payDate;
+
+	@Column(name="vnp_response_Code")
+	private String vnp_responseCode;
+
+	@Column(name="vnp_tmn_Code")
+	private String vnp_tmnCode;
+
+	@Column(name="vnp_transaction_No")
+	private String vnp_transactionNo;
+
+	@Column(name="vnp_transaction_Status")
+	private String vnp_transactionStatus;
+
+	@Column(name="vnp_txn_Ref")
+	private String vnp_txnRef;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_ord")

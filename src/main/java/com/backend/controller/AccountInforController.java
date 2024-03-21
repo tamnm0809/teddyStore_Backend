@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.backend.model.AccountInfor;
+import com.backend.model.AccountInfo;
 import com.backend.services.AccountInforService;
 
 @RestController
@@ -18,7 +18,7 @@ public class AccountInforController {
 	private AccountInforService accountInforService;
 
 	@GetMapping("/getAllAccountInfor")
-	public List<AccountInfor> getAllAccountInfor() {
+	public List<AccountInfo> getAllAccountInfor() {
 		return accountInforService.getAllAccountInfor();
 	}
 }

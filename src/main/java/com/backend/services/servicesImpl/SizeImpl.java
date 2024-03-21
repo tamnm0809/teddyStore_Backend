@@ -1,8 +1,11 @@
 package com.backend.services.servicesImpl;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.backend.dto.SizeDTO;
 import com.backend.util.RandomUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +30,10 @@ public class SizeImpl implements SizeService {
 
     @Override
     public Object updateSize(String id, String size_no) {
-		// Nếu id tồn tại thì update, không tồn tại thì tạo mới
+		// N?u id t?n t?i th? update, kh�ng t?n t?i th? t?o m?i
         var size = sizeRepository.findById(id);
 
-		// kiểm tra xem size có tồn tại không
+		// ki?m tra xem size c� t?n t?i kh�ng
         if (size.isPresent()) {
 			// update thong tin size
             var size1 = size.get();
@@ -63,5 +66,24 @@ public class SizeImpl implements SizeService {
     public Object getAllSize() {
         return sizeRepository.findAll();
     }
+	private List<SizeDTO> convertToObjectDTO(List<Object[]> results) {
+		List<SizeDTO> sizeDetailsDTOList = new ArrayList<>();
+
+		for (Object[] result : results) {
+			SizeDTO DetailsDTO = new SizeDTO();
+			DetailsDTO.setId((String) result[0]);
+			DetailsDTO.setSize_no((String) result[1]);
+			DetailsDTO.setPrice(((BigDecimal) result[2]).intValue());
+
+			sizeDetailsDTOList.add(DetailsDTO);
+		}
+
+		return sizeDetailsDTOList;
+	}
+
+	public List<SizeDTO> getSizeWhereId(String id) {
+		List<Object[]> results = sizeRepository.findByIdWhere(id);
+		return convertToObjectDTO(results);
+	}
 
 }

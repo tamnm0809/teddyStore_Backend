@@ -36,13 +36,13 @@ public class DiscountImpl implements DiscountService {
                                                                                                                  ParseException {
         Date date1 = null;
         Date date2 = null;
-        if (startDate.contains(":")) { // Kiểm tra xem có giờ trong chuỗi không
+        if (startDate.contains(":")) { // Ki?m tra xem c� gi? trong chu?i kh�ng
             date1 = sdfWithTime.parse(startDate);
         } else {
             date1 = sdfWithoutTime.parse(startDate);
         }
 
-        if (endDate.contains(":")) { // Kiểm tra xem có giờ trong chuỗi không
+        if (endDate.contains(":")) { // Ki?m tra xem c� gi? trong chu?i kh�ng
             date2 = sdfWithTime.parse(endDate);
         } else {
             date2 = sdfWithoutTime.parse(endDate);

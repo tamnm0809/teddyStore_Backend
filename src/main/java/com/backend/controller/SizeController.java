@@ -2,6 +2,7 @@ package com.backend.controller;
 
 import java.util.List;
 
+import com.backend.dto.SizeDTO;
 import com.backend.payload.CategoryPayload;
 import com.backend.payload.SizePayload;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +18,11 @@ import com.backend.services.SizeService;
 @CrossOrigin("*")
 public class SizeController {
     private final SizeService sizeService;
-
-    @GetMapping("/getAllSize")
+	@GetMapping("/getSizeBy/{productId}")
+    public List<SizeDTO> getSizeById(@PathVariable String productId){
+		return sizeService.getSizeWhereId(productId);
+	}
+	 @GetMapping("/getAllSize")
     public Object getAllSize(@RequestParam("page") int page, @RequestParam("size") int size) {
         return sizeService.getAllSize(page, size);
     }

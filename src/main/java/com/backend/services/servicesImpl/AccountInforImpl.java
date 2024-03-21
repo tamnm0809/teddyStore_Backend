@@ -6,7 +6,7 @@ import com.backend.util.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.backend.model.AccountInfor;
+import com.backend.model.AccountInfo;
 import com.backend.repository.AccountInforRepository;
 import com.backend.services.AccountInforService;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +18,7 @@ public class AccountInforImpl implements AccountInforService{
 	private AccountInforRepository accountInforRepository;
 
 	@Override
-	public List<AccountInfor> getAllAccountInfor() {
+	public List<AccountInfo> getAllAccountInfor() {
 		return accountInforRepository.findAll();
 	}
 
@@ -30,7 +30,7 @@ public class AccountInforImpl implements AccountInforService{
 
 	@Override
 	@Transactional
-	public void saveAccountInfor(AccountInfor accountInfor) {
+	public void saveAccountInfor(AccountInfo accountInfor) {
 		var lastAccInfo = accountInforRepository.findLastAccountInfor();
 		if(lastAccInfo.isPresent()){
 			accountInfor.setId(RandomUtil.getNextId(lastAccInfo.get().getId(), "IA"));

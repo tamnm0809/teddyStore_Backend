@@ -1,19 +1,23 @@
 package com.backend.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "[service]")
+@Table(name = "[Service]")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -28,11 +32,19 @@ public class Service implements Serializable {
 	@Column(name = "name")
 	private String name;
 
+	@Column(name = "price")
+	private double price;
+
 	@Column(name = "image")
-	private String decription;
+	private String image;
+
+	@Column(name = "description")
+	private String description;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_cate")
-	@JsonBackReference
 	private Category category;
+	
+	@OneToMany(mappedBy = "service", cascade = CascadeType.ALL)
+	private Set<Cart> cart;
 }

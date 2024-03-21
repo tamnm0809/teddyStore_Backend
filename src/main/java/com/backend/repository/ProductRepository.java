@@ -16,6 +16,30 @@ import java.util.Set;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, String> {
+
+	@Query(value = "SELECT TOP 8 p.id, p.name, MIN(pi.img_url) FROM Size s "
+			+ "JOIN Details_Product dp ON dp.id_size = s.id "
+			+ "JOIN Product p ON p.id = dp.id_pro "
+			+ "JOIN Product_Image pi ON pi.id_pro = p.id "
+			+ "GROUP BY p.id, p.name", nativeQuery = true)
+	List<Object[]> findAllProducts();
+
+	@Query(value = "SELECT p.id, p.name, MIN(pi.img_url) FROM Size s "
+			+ "JOIN Details_Product dp ON dp.id_size = s.id "
+			+ "JOIN Product p ON p.id = dp.id_pro "
+			+ "JOIN Product_Image pi ON pi.id_pro = p.id "
+			+ "JOIN Category c ON c.id = p.id_cate "
+			+ "WHERE c.name = N'Th˙ bÙng' GROUP BY p.id, p.name", nativeQuery = true)
+	List<Object[]> findAllWhereThuBong();
+	
+	@Query(value = "SELECT p.id, p.name, MIN(pi.img_url) FROM Size s "
+			+ "JOIN Details_Product dp ON dp.id_size = s.id "
+			+ "JOIN Product p ON p.id = dp.id_pro "
+			+ "JOIN Product_Image pi ON pi.id_pro = p.id "
+			+ "JOIN Category c ON c.id = p.id_cate "
+			+ "WHERE c.name = N'G?u bÙng ho?t h?nh' GROUP BY p.id, p.name", nativeQuery = true)
+	List<Object[]> findAllWhereGauHoatHinh();
+
     @Query("SELECT a FROM Product a ORDER BY a.id DESC LIMIT 1")
     Optional<Product> findLastProduct();
 
@@ -47,7 +71,7 @@ public interface ProductRepository extends JpaRepository<Product, String> {
             """)
     Page<ProductResponse> findAllProductByName(String name,Pageable pageable);
 
-    // ƒë·ªëi t∆∞·ª£ng tr·∫£ v·ªÅ c·ªßa c√¢u query, vi·∫øt h√†m getter,  Mu·ªën l·∫•y tr∆∞·ªùng th√¥ng tin n√†o th√¨ vi·∫øt h√†m getter cho tr∆∞·ªùng ƒë√≥ ƒë·ªÉ l·∫•y
+    // ?i t˝?ng tr? v? c?a c‚u query, vi?t h‡m getter,  Mu?n l?y tr˝?ng thÙng tin n‡o th? vi?t h‡m getter cho tr˝?ng Û ? l?y
     interface ProductResponse {
         String getId();
 

@@ -2,9 +2,12 @@ package com.backend.services;
 
 import java.util.List;
 
+import com.backend.dto.CartDTO;
 import com.backend.model.Cart;
 
 public interface CartService {
 
-	public List<Cart> getAllCart();
+	public List<CartDTO> getAllCart(String id);
+
+    public void deleteCart(String id);
 }

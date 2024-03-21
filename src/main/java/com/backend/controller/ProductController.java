@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
-
 import com.backend.model.DetailsProduct;
 import com.backend.model.ProductImage;
 import com.backend.payload.ProductPayload;
@@ -15,7 +14,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
-
+import com.backend.dto.ProductDTO;
+import com.backend.services.ProductService;
 import com.backend.model.Product;
 import com.backend.services.ProductService;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,7 +34,20 @@ public class ProductController {
     ColorRepository colorRepository;
     SizeRepository sizeRepository;
 
-    @GetMapping("/getAllProduct")
+	@GetMapping("/getAllProduct")
+	public List<ProductDTO> getAllProduct(){
+		return proService.getAllProductDTO();
+	}
+	@GetMapping("/getAllProductWhere-Thu-Bong")
+	public List<ProductDTO> getProductWhereThuBong(){
+		return proService.getAllProductWhereThuBong();
+	}
+	
+	@GetMapping("/getAllProductWhere-Gau-Bong-Hoat-Hinh")
+	public List<ProductDTO> getProductWhereGauHoatHinh(){
+		return proService.getAllProductWhereGauHoatHinh();
+	}
+	@GetMapping("/getAllProduct")
     public Object getAllProduct(@RequestParam("page") int page, @RequestParam("size") int size) {
         return proService.getAllProduct(page, size);
     }
