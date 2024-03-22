@@ -5,10 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.backend.dto.ProductDTO;
+import com.backend.dto.ProductDTO; 
 import com.backend.services.ProductService;
 
 @RestController
@@ -33,4 +34,8 @@ public class ProductController {
 	public List<ProductDTO> getProductWhereGauHoatHinh(){
 		return proService.getAllProductWhereGauHoatHinh();
 	}
+	@GetMapping("/getProductDetailID/{id}")
+    public List<ProductDTO> getProductDetails(@PathVariable String id) {
+        return proService.getProductDetailsById(id);
+    }
 }

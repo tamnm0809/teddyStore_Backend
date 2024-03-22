@@ -63,4 +63,11 @@ public class Account implements Serializable {
         this.id = id;
     }
 
+<<<<<<< HEAD
+=======
+	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+	private Set<Rate> rate;
+	
+	
+>>>>>>> 7bf7467e33583850fbbb56de3b2cdddeaf869bf1
 }

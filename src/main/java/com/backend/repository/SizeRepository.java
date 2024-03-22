@@ -12,11 +12,12 @@ import com.backend.model.Size;
 @Repository
 public interface SizeRepository extends JpaRepository<Size, String>{
 	
-	@Query(value = "SELECT S.id,S.size_no,DP.price FROM SIZE S "
+	@Query(value = "SELECT S.id,S.size_no,DP.price,DC.price_sale,DP.quantity FROM SIZE S "
 	        + "JOIN DETAILS_PRODUCT DP ON DP.id_size=S.id "
+			+ "JOIN DISCOUNT DC ON DC.id_dt_pro = DP.id "
 	        + "JOIN PRODUCT P ON P.id=DP.id_pro "
 	        + "WHERE P.ID = :productId "
-	        + "GROUP BY S.id,S.size_no,DP.price", nativeQuery = true)
+	        + "GROUP BY S.id,S.size_no,DP.price,DC.price_sale,DP.quantity", nativeQuery = true)
 	public List<Object[]> findByIdWhere(@Param("productId") String productId);
 
 	

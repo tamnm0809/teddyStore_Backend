@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.backend.dto.ImgProDTO; 
 import com.backend.model.ProductImage;
 import com.backend.services.ProductImageService;
 
@@ -22,5 +24,9 @@ public class ProductImageController {
 	@GetMapping("/getAllImageProduct")
 	public List<ProductImage> getAllImagePro() {
 		return productImageService.getAllImageProduct();
+	}
+	@GetMapping("/getImgPro/{id}")
+	public List<ImgProDTO> getProductImg(@PathVariable String id){
+		return productImageService.getProductImages(id);
 	}
 }

@@ -4,8 +4,15 @@ import java.util.List;
 
 import com.backend.dto.CartDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< HEAD
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+=======
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+>>>>>>> 7bf7467e33583850fbbb56de3b2cdddeaf869bf1
 
 import com.backend.model.Cart;
 import com.backend.services.CartService;
