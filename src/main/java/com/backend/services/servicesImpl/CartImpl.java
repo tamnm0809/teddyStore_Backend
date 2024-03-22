@@ -27,23 +27,26 @@ public class CartImpl implements CartService{
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
 			DetailsDTO.setId_acc((String) result[0]);
-			DetailsDTO.setId((String) result[1]);
-			DetailsDTO.setPrice_pro(((BigDecimal) result[2]).intValue());
-			DetailsDTO.setName_ser((String) result[3]);
-			DetailsDTO.setName_pro((String) result[4]);
-			DetailsDTO.setColor((String) result[5]);
-			DetailsDTO.setPrice_ser(((BigDecimal) result[6]).intValue());
-			DetailsDTO.setSize_no((String) result[7]);
-			DetailsDTO.setQuantity_pro((Integer) result[8]);
-			DetailsDTO.setQuantity_ser((Integer) result[9]);
-			DetailsDTO.setDate_add((Date) result[10]);
-			DetailsDTO.setImage_pro((String) result[11]);
+			DetailsDTO.setId_dt_pro((String) result[1]);
+			DetailsDTO.setId((String) result[2]);
+			DetailsDTO.setPrice_pro(((BigDecimal) result[3]).intValue());
+			DetailsDTO.setName_ser((String) result[4]);
+			DetailsDTO.setName_pro((String) result[5]);
+			DetailsDTO.setColor((String) result[6]);
+			DetailsDTO.setPrice_ser(((BigDecimal) result[7]).intValue());
+			DetailsDTO.setSize_no((String) result[8]);
+			DetailsDTO.setQuantity_pro((Integer) result[9]);
+			DetailsDTO.setQuantity_ser((Integer) result[10]);
+			DetailsDTO.setDate_add((Date) result[11]);
+			DetailsDTO.setImage_pro((String) result[12]);
+			DetailsDTO.setId_ser((String) result[13]);
 
 			cartDetailsDTOList.add(DetailsDTO);
 		}
 
 		return cartDetailsDTOList;
 	}
+
 	@Override
 	public List<CartDTO> getAllCart(String id) {
 		List<Object[]> results = cartRepository.findAllBy(id);

@@ -10,15 +10,20 @@ import com.backend.repository.DetailsOrderRepository;
 import com.backend.services.DetailsOrderService;
 
 @Service
-public class DetailsOrderImpl implements DetailsOrderService{
-	
-	@Autowired
-	private DetailsOrderRepository detailsOrderRepository;
+public class DetailsOrderImpl implements DetailsOrderService {
 
-	@Override
-	public List<DetailsOrder> getAllDetailsOrder() {
-		return detailsOrderRepository.findAll();
-	}
+    @Autowired
+    private DetailsOrderRepository detailsOrderRepository;
+
+    @Override
+    public List<DetailsOrder> getAllDetailsOrder() {
+        return detailsOrderRepository.findAll();
+    }
+
+    @Override
+    public DetailsOrder addNewDetailOrder(DetailsOrder detailsOrder) {
+        return detailsOrderRepository.save(detailsOrder);
+    }
 
 
 }

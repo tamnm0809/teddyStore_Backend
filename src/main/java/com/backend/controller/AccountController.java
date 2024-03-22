@@ -13,15 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.model.Account;
-import com.backend.services.LoginAthenticationService;
+import com.backend.services.AccountService;
 
 @RestController
 @RequestMapping("/teddy-store")
 @CrossOrigin("http://localhost:3000/")
-public class LoginAuthenticationController {
+public class AccountController {
 
 	@Autowired
-	private LoginAthenticationService loginService;
+	private AccountService loginService;
 
 	@GetMapping("/getAllAccount")
 	public List<Account> getAllAccount() {
@@ -34,7 +34,7 @@ public class LoginAuthenticationController {
 		String password = acc.getPassword();
 
 		if (loginService.authenticateAcc(username, password)) {
-			Account authenticatedAcc = loginService.getInforByUsername(username);
+			Account authenticatedAcc = loginService.getInfoByUsername(username);
 			return new ResponseEntity<>(authenticatedAcc, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
@@ -44,7 +44,7 @@ public class LoginAuthenticationController {
 	@PostMapping("/login-facebook")
 	public ResponseEntity<Account> LoginWithFacebook(@RequestBody Account acc, String username, String pasword) {
 		if (loginService.authenticateAcc(username, pasword)) {
-			Account authenticatedAcc = loginService.getInforByUsername(username);
+			Account authenticatedAcc = loginService.getInfoByUsername(username);
 			return new ResponseEntity<>(authenticatedAcc, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);

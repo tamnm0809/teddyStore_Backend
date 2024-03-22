@@ -13,14 +13,18 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Address implements Serializable {
+
     @Id
-    private Long id;
+    private String id;
 
     @Column(name = "type_address")
     private String type_address;
 
     @Column(name = "sub_address")
     private String sub_address;
+
+    @Column(name = "name_address")
+    private String name_address;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_acc")

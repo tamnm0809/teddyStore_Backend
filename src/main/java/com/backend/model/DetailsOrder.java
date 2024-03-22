@@ -1,5 +1,6 @@
 package com.backend.model;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import jakarta.persistence.Column;
@@ -20,6 +21,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DetailsOrder implements Serializable{
 	
+	@Serial
 	private static final long serialVersionUID = 3165204643475068723L;
 
 	@Id
@@ -45,10 +47,17 @@ public class DetailsOrder implements Serializable{
 	
 	@Column(name="method_payment")
 	private String method_payment;
-	
+
+	@Column(name="amount")
+	private Double amount;
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_dt_pro")
 	private DetailsProduct detailsProduct;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_ser")
+	private Service service;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_ord")

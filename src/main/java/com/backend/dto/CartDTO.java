@@ -8,6 +8,8 @@ import java.util.Date;
 public class CartDTO {
     private String id;
     private String id_acc;
+    private String id_dt_pro;
+    private String id_ser;
     private String name_ser;
     private String name_pro;
     private String size_no;

@@ -46,4 +46,7 @@ public class Service implements Serializable {
 	
 	@OneToMany(mappedBy = "service", cascade = CascadeType.ALL)
 	private Set<Cart> cart;
+
+	@OneToMany(mappedBy = "service", cascade = CascadeType.ALL)
+	private Set<DetailsOrder> detailsOrders;
 }

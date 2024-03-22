@@ -21,41 +21,46 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Account implements Serializable {
 
-	private static final long serialVersionUID = 2216095496718599412L;
+    private static final long serialVersionUID = 2216095496718599412L;
 
-	@Id
-	private String id;
+    @Id
+    private String id;
 
-	@Column(name = "username")
-	private String username;
+    @Column(name = "username")
+    private String username;
 
-	@Column(name = "password")
-	private String password;
+    @Column(name = "password")
+    private String password;
 
-	@Column(name = "role")
-	private Boolean role;
+    @Column(name = "role")
+    private Boolean role;
 
-	@Column(name = "date_create")
-	private Date date_create;
+    @Column(name = "date_create")
+    private Date date_create;
 
-	@Column(name = "active")
-	private Boolean active;
+    @Column(name = "active")
+    private Boolean active;
 
-	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
-	private Set<AccountInfo> accountInfo;
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    private Set<AccountInfo> accountInfo;
 
-	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
-	private Set<Cart> cart;
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    private Set<Cart> cart;
 
-	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
-	private Set<Order> order;
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    private Set<Order> order;
 
-	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
-	private Set<Rate> rate;
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    private Set<Rate> rate;
 
-	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
-	private Set<Delivery> delivery;
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    private Set<Delivery> delivery;
 
-	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
-	private Set<Address> address;
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    private Set<Address> address;
+
+    public Account(String id) {
+        this.id = id;
+    }
+
 }
