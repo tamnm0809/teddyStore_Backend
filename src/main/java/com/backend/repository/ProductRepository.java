@@ -8,7 +8,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
  
 import com.backend.model.Product;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import java.util.Optional;
+import java.util.Set;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, String> {
 
@@ -43,5 +46,103 @@ public interface ProductRepository extends JpaRepository<Product, String> {
 			+ "WHERE p.id = :id GROUP BY p.id, p.name", nativeQuery = true) 
     List<Object[]> getProductDetails(@Param("id") String id);
 
+    
+    @Query("SELECT a FROM Product a ORDER BY a.id DESC LIMIT 1")
+    Optional<Product> findLastProduct();
+
+//    @Query("SELECT a FROM Product a JOIN FETCH a.detailsProduct dp WHERE a.active = :active")
+//    List<ProductRepositoryCustom> findAllByActive(Boolean active);
+
+//    @Query("""
+//                        SELECT p
+//                        FROM Product p
+//                         JOIN FETCH p.productImages
+//                         JOIN FETCH p.category
+//                         JOIN FETCH p.detailsProduct pd
+//                         JOIN FETCH pd.color
+//                            JOIN FETCH pd.size
+//                            WHERE p.active = true
+//            """)
+//    Page<ProductResponse> findAllProduct(Pageable pageable);
+
+//    @Query("""
+//                        SELECT p
+//                        FROM Product p
+//                         JOIN FETCH p.productImages
+//                         JOIN FETCH p.category
+//                         JOIN FETCH p.detailsProduct pd
+//                         JOIN FETCH pd.color
+//                            JOIN FETCH pd.size
+//                            WHERE p.active = true
+//                            AND p.name LIKE %:name%
+//            """)
+//    Page<ProductResponse> findAllProductByName(@Param("name") String name,Pageable pageable);
+
+    // �?i t�?ng tr? v? c?a c�u query, vi?t h�m getter,  Mu?n l?y tr�?ng th�ng tin n�o th? vi?t h�m getter cho tr�?ng �� �? l?y
+    interface ProductResponse {
+        String getId();
+
+        String getName();
+
+        String getDescription();
+
+        Boolean getActive();
+
+        CategoryResponse getCategory();
+        Set<ProductImageResponse> getProductImages();
+        Set<DetailProductResponse> getDetailsProduct();
+
+        interface ProductImageResponse {
+            String getId();
+
+            String getImg_url();
+        }
+
+        interface CategoryResponse {
+            String getId();
+
+            String getName();
+        }
+
+        interface DetailProductResponse {
+            String getId();
+
+            double getPrice();
+
+            int getQuantity();
+
+            SizeResponse getSize();
+
+            ColorResponse getColor();
+
+            interface SizeResponse {
+                String getId();
+
+                String getSize_no();
+            }
+
+            interface ColorResponse {
+                String getId();
+
+                String getColor();
+            }
+        }
+    }
+
+    interface ProductRepositoryCustom {
+        String getId();
+
+        String getName();
+
+        Boolean getActive();
+
+        Set<DetailProductResponse> getDetailsProduct();
+
+        interface DetailProductResponse {
+            String getId();
+
+            double getPrice();
+        }
+    }
 	
 }

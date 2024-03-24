@@ -1,7 +1,10 @@
 package com.backend.repository;
  
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,4 +21,8 @@ public interface ColorRepository extends JpaRepository<Color, String>{
     "WHERE p.id = :id GROUP BY  c.color" , nativeQuery=true)
     List<Object[]> getColorById(@Param("id") String id);
 
+    @Query("SELECT a FROM Color a ORDER BY a.id DESC LIMIT 1")
+    Optional<Color> findLastColor();
+    @Query("SELECT c FROM Color c WHERE LOWER(c.color) LIKE %:color%")
+    Page<Color> findAllByName(@Param("color") String color, Pageable pageable);
 }

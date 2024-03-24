@@ -21,5 +21,10 @@ public interface AccountInfoRepository extends JpaRepository<AccountInfo, String
             "GROUP BY IA.ID, IA.AVATAR, IA.NAME, IA.GENDER, IA.EMAIL, IA.PHONE, IA.BIRTHDAY", nativeQuery = true)
     public List<Object[]> findDataAccWithId(@Param("id") String id);
 
+    
+    Optional<AccountInfo> findByEmail(String email);
+
+    @Query("SELECT a FROM AccountInfo a ORDER BY a.id DESC LIMIT 1")
+    Optional<AccountInfo> findLastAccountInfor();
 }
 	
