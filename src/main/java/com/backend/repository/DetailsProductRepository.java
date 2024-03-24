@@ -1,6 +1,7 @@
 package com.backend.repository;
  
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -19,5 +20,7 @@ public interface DetailsProductRepository extends JpaRepository<DetailsProduct, 
                    "GROUP BY p.id, pr.name, c.color, s.size_no", nativeQuery = true)
     List<Object[]> getProductDetails();
 
+    @Query("SELECT a FROM DetailsProduct a ORDER BY a.id DESC LIMIT 1")
+    Optional<DetailsProduct> findLastDetailsProduct();
 
 }

@@ -11,10 +11,13 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "[category]")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,7 +32,7 @@ public class Category implements Serializable {
 	private String name;
 
 	@Column(name = "active")
-	private String active;
+	private Boolean active;
 
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
 	private Set<Product> product;

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.backend.dto.ProductDTO; 
@@ -11,16 +13,42 @@ import com.backend.model.Product;
 import com.backend.repository.ProductRepository;
 import com.backend.services.ProductService;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class ProductImpl implements ProductService {
 
-	@Autowired
-	ProductRepository proRepository;
+	private final ProductRepository proRepository;
 
 	@Override
 	public List<Product> getAllProduct() {
 		return proRepository.findAll();
 	}
+	
+
+//    @Override
+//    public Object getAllProduct(int page, int size) {
+//        Pageable pageable = PageRequest.of(page, size);
+//        return proRepository.findAllProduct(pageable);
+//    }
+
+//    @Override
+//    public Object getAllProductActive() {
+//        return proRepository.findAllByActive(true);
+//    }
+
+    @Override
+    public Object updateProduct(Product product) {
+        proRepository.save(product);
+        return "OK";
+    }
+
+//    @Override
+//    public Object searchProductByName(String name) {
+//        return proRepository.findAllProductByName(name, PageRequest.of(0, 10));
+//    }
+
 
 	private List<ProductDTO> convertToProductsDTO(List<Object[]> results) {
 		List<ProductDTO> productDetailsDTOList = new ArrayList<>();

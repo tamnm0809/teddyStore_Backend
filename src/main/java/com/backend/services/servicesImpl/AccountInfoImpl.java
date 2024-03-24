@@ -11,6 +11,10 @@ import com.backend.dto.AccountInfoDTO;
 import com.backend.dto.CartDTO;
 import com.backend.repository.AccountInfoRepository;
 import com.backend.services.AccountInfoService;
+import com.backend.util.RandomUtil;
+
+import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +26,24 @@ public class AccountInfoImpl implements AccountInfoService {
 	@Autowired
 	private AccountInfoRepository accountInfoRepository;
 
+	@Override
+	public boolean isExistEmail(String email) {
+		return accountInfoRepository.findByEmail(email)
+				.isPresent();
+	}
+
+	@Override
+	@Transactional
+	public void saveAccountInfor(AccountInfo accountInfor) {
+		var lastAccInfo = accountInfoRepository.findLastAccountInfor();
+		if(lastAccInfo.isPresent()){
+			accountInfor.setId(RandomUtil.getNextId(lastAccInfo.get().getId(), "IA"));
+		}else {
+			accountInfor.setId(RandomUtil.getNextId(null, "IA"));
+		}
+		accountInfoRepository.save(accountInfor);
+	}
+	
 	@Override
 	public List<AccountInfo> getAllAccountInfo() {
 		return accountInfoRepository.findAll();
