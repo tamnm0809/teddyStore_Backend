@@ -18,5 +18,5 @@ public interface AddressRepository extends JpaRepository<Address, String> {
     public List<Address> findAllById(@Param("id") String id);
 
     @Query("SELECT a FROM Address a ORDER BY a.id DESC LIMIT 1")
-    Optional<Color> findLastAddress();
+    Optional<Address> findLastAddress();
 }

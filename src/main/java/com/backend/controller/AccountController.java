@@ -66,6 +66,7 @@ public class AccountController {
 		accountInfor.setName(payload.getName());
 		accountInfor.setBirthday(payload.getDob());
 		accountInfor.setGender(payload.getGender());
+		accountInfor.setPhone(payload.getPhone());
 		accountInfor.setAvatar("NULL");
 		Address address = new Address();
 		var lastAddress = addressRepository.findLastAddress();

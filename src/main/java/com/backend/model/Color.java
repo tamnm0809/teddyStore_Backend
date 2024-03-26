@@ -3,6 +3,8 @@ package com.backend.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,5 +34,6 @@ public class Color implements Serializable {
 	private String color;
 
 	@OneToMany(mappedBy = "color", cascade = CascadeType.ALL)
+	@JsonBackReference
 	private Set<DetailsProduct> detailsProduct;
 }

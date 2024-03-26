@@ -50,33 +50,33 @@ public interface ProductRepository extends JpaRepository<Product, String> {
     @Query("SELECT a FROM Product a ORDER BY a.id DESC LIMIT 1")
     Optional<Product> findLastProduct();
 
-//    @Query("SELECT a FROM Product a JOIN FETCH a.detailsProduct dp WHERE a.active = :active")
-//    List<ProductRepositoryCustom> findAllByActive(Boolean active);
+    @Query("SELECT a FROM Product a JOIN FETCH a.detailsProduct dp WHERE dp.active = :active")
+    List<ProductRepositoryCustom> findAllByActive(@Param("active") Boolean active);
 
-//    @Query("""
-//                        SELECT p
-//                        FROM Product p
-//                         JOIN FETCH p.productImages
-//                         JOIN FETCH p.category
-//                         JOIN FETCH p.detailsProduct pd
-//                         JOIN FETCH pd.color
-//                            JOIN FETCH pd.size
-//                            WHERE p.active = true
-//            """)
-//    Page<ProductResponse> findAllProduct(Pageable pageable);
+    @Query("""
+                        SELECT p
+                        FROM Product p
+                         JOIN FETCH p.productImages
+                         JOIN FETCH p.category
+                         JOIN FETCH p.detailsProduct pd 
+                         JOIN FETCH pd.color
+                            JOIN FETCH pd.size
+                            WHERE pd.active = true
+            """)
+    Page<ProductResponse> findAllProduct(Pageable pageable);
 
-//    @Query("""
-//                        SELECT p
-//                        FROM Product p
-//                         JOIN FETCH p.productImages
-//                         JOIN FETCH p.category
-//                         JOIN FETCH p.detailsProduct pd
-//                         JOIN FETCH pd.color
-//                            JOIN FETCH pd.size
-//                            WHERE p.active = true
-//                            AND p.name LIKE %:name%
-//            """)
-//    Page<ProductResponse> findAllProductByName(@Param("name") String name,Pageable pageable);
+    @Query("""
+                        SELECT p
+                        FROM Product p
+                         JOIN FETCH p.productImages
+                         JOIN FETCH p.category
+                         JOIN FETCH p.detailsProduct pd
+                         JOIN FETCH pd.color
+                            JOIN FETCH pd.size
+                            WHERE pd.active = true
+                            AND p.name LIKE %:name%
+            """)
+    Page<ProductResponse> findAllProductByName(@Param("name") String name,Pageable pageable);
 
     // �?i t�?ng tr? v? c?a c�u query, vi?t h�m getter,  Mu?n l?y tr�?ng th�ng tin n�o th? vi?t h�m getter cho tr�?ng �� �? l?y
     interface ProductResponse {
@@ -85,9 +85,6 @@ public interface ProductRepository extends JpaRepository<Product, String> {
         String getName();
 
         String getDescription();
-
-        Boolean getActive();
-
         CategoryResponse getCategory();
         Set<ProductImageResponse> getProductImages();
         Set<DetailProductResponse> getDetailsProduct();
@@ -114,6 +111,7 @@ public interface ProductRepository extends JpaRepository<Product, String> {
             SizeResponse getSize();
 
             ColorResponse getColor();
+            Boolean getActive();
 
             interface SizeResponse {
                 String getId();
@@ -123,7 +121,6 @@ public interface ProductRepository extends JpaRepository<Product, String> {
 
             interface ColorResponse {
                 String getId();
-
                 String getColor();
             }
         }
@@ -131,16 +128,12 @@ public interface ProductRepository extends JpaRepository<Product, String> {
 
     interface ProductRepositoryCustom {
         String getId();
-
         String getName();
-
-        Boolean getActive();
-
         Set<DetailProductResponse> getDetailsProduct();
 
         interface DetailProductResponse {
             String getId();
-
+            Boolean getActive();
             double getPrice();
         }
     }

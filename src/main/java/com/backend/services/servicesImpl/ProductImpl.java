@@ -16,10 +16,10 @@ import com.backend.services.ProductService;
 import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class ProductImpl implements ProductService {
-
-	private final ProductRepository proRepository;
+	@Autowired
+	 ProductRepository proRepository;
 
 	@Override
 	public List<Product> getAllProduct() {
@@ -27,16 +27,16 @@ public class ProductImpl implements ProductService {
 	}
 	
 
-//    @Override
-//    public Object getAllProduct(int page, int size) {
-//        Pageable pageable = PageRequest.of(page, size);
-//        return proRepository.findAllProduct(pageable);
-//    }
+    @Override
+    public Object getAllProduct(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return proRepository.findAllProduct(pageable);
+    }
 
-//    @Override
-//    public Object getAllProductActive() {
-//        return proRepository.findAllByActive(true);
-//    }
+    @Override
+    public Object getAllProductActive() {
+        return proRepository.findAllByActive(true);
+    }
 
     @Override
     public Object updateProduct(Product product) {
@@ -44,10 +44,10 @@ public class ProductImpl implements ProductService {
         return "OK";
     }
 
-//    @Override
-//    public Object searchProductByName(String name) {
-//        return proRepository.findAllProductByName(name, PageRequest.of(0, 10));
-//    }
+    @Override
+    public Object searchProductByName(String name) {
+        return proRepository.findAllProductByName(name, PageRequest.of(0, 10));
+    }
 
 
 	private List<ProductDTO> convertToProductsDTO(List<Object[]> results) {
