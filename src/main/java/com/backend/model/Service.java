@@ -3,6 +3,8 @@ package com.backend.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -45,8 +47,10 @@ public class Service implements Serializable {
 	private Category category;
 	
 	@OneToMany(mappedBy = "service", cascade = CascadeType.ALL)
+	@JsonBackReference
 	private Set<Cart> cart;
 
 	@OneToMany(mappedBy = "service", cascade = CascadeType.ALL)
+	@JsonBackReference
 	private Set<DetailsOrder> detailsOrders;
 }
